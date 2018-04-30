@@ -37,4 +37,19 @@ public class AccountDBRepository implements IAccountRepository {
 		manager.persist(util.getObjectForJSON(account, Account.class));
 		return "Added account";
 	}
+	
+	@Override
+	public String deleteAccount(long id)
+	{
+		LOGGER.info("In AccountDBRepository deleteAccount");
+		Account ac = manager.find(Account.class, id);
+		if(ac != null)
+		{
+			manager.remove(manager.find(Account.class, id));
+			return "Deleted successfully";
+		}
+		else return "Account not found";
+
+		
+	}
 }
