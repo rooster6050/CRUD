@@ -26,5 +26,11 @@ public class AccountService implements IAccountService {
 	{
 		return repo.deleteAccount(id);
 	}
+	
+	@Override
+	public String updateAccount(long id, String newAccount)
+	{
+		return repo.updateAccount(id, newAccount);
+	}
 
 }
