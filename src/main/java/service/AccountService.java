@@ -14,5 +14,11 @@ public class AccountService implements IAccountService {
 	{
 		return repo.getAllAccounts();
 	}
+	
+	@Override
+	public String createAccount(String account)
+	{
+		return repo.createAccount(account);
+	}
 
 }

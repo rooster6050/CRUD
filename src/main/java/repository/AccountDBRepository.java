@@ -23,10 +23,18 @@ public class AccountDBRepository implements IAccountRepository {
 
 	@Override
 	public String getAllAccounts() {
-		LOGGER.info("MovieDBRepository getAllMovies");
-		Query query = manager.createQuery("Select m FROM Movie m");
+		LOGGER.info("AccountDBRepository getAllAccounts");
+		Query query = manager.createQuery("Select m FROM Account m");
 		Collection<Account> accounts = (Collection<Account>)query.getResultList();
 
 		return util.getJSONForObject(accounts);
+	}
+	
+	@Override
+	public String createAccount(String account)
+	{
+		LOGGER.info("AccountDBRepository createAccount");
+		manager.persist(util.getObjectForJSON(account, Account.class));
+		return "Added account";
 	}
 }
