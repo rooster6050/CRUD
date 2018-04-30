@@ -49,7 +49,19 @@ public class AccountDBRepository implements IAccountRepository {
 			return "Deleted successfully";
 		}
 		else return "Account not found";
-
-		
+	}
+	
+	@Override
+	public String updateAccount(long id, String newAccount)
+	{
+		LOGGER.info("AccountDBRepository updateeAccount");
+		Account ac = manager.find(Account.class, id);
+		if(ac != null)
+		{
+			manager.remove(manager.find(Account.class, id));
+			manager.persist(util.getObjectForJSON(newAccount, Account.class));
+			return "Account updated";
+		}
+		return "Account not found";
 	}
 }
